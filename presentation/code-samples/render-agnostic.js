@@ -1,4 +1,4 @@
-const webpack = {
+const renderAgnostic = {
   platformModule: `
   import { Platform } from 'react-native';
 
@@ -15,7 +15,7 @@ const webpack = {
   `,
   platformExtensions: `
   import { Text } from 'react-native';
-  import { Link } from '@mls-digital/react-components';
+  import { Link } from 'universal-components';
   // will resolve from index.web.js on web
 
   export default ({ text }) => (
@@ -26,4 +26,4 @@ const webpack = {
   `,
 };
 
-export default webpack;
+export default renderAgnostic;

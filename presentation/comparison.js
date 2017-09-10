@@ -1,20 +1,26 @@
 import React from 'react';
 import { Text } from 'spectacle';
 
-export default ({ top, bottom }) => (
+const Comparison = ({ top, bottom, comparison = 'vs.' }) => (
   <div>
-    <Text textSize="2em" textColor="tertiary" style={{ lineHeight: '1.3em' }}>
+    <Text textSize="2.2em" textColor="tertiary" style={{ lineHeight: '1.3em' }}>
       {top}
     </Text>
     <Text
-      textSize="1.2em"
+      textSize="1.4em"
       textColor="secondary"
       style={{ lineHeight: '1.3em' }}
     >
-      vs.
+      {comparison}
     </Text>
-    <Text textSize="2em" textColor="quartenary" style={{ lineHeight: '1.3em' }}>
+    <Text
+      textSize="2.2em"
+      textColor="quartenary"
+      style={{ lineHeight: '1.3em' }}
+    >
       {bottom}
     </Text>
   </div>
 );
+
+export default Comparison;

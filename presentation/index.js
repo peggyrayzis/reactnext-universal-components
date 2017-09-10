@@ -16,24 +16,18 @@ import {
   Text,
 } from 'spectacle';
 
-import {
-  ReactNativeWeb,
-  ReactPrimitives,
-  ReactXP,
-  Webpack,
-  Storybook,
-} from './library-examples';
+import { ReactNativeWeb, Webpack, RenderAgnostic } from './code-samples';
 import QuoteSlide from './quote';
 import Comparison from './comparison';
 
 // change to import notes if you are presenting
-import presenterNotes from './notes';
+import notes from './notes';
 
 // comment this out and change above line if you are presenting
-const notes = Object.keys(presenterNotes).reduce(
-  (acc, val) => ({ ...acc, [val]: 'Presenter notes coming soon 😜' }),
-  {},
-);
+// const notes = Object.keys(presenterNotes).reduce(
+//   (acc, val) => ({ ...acc, [val]: 'Presenter notes coming soon 😜' }),
+//   {},
+// );
 
 // Import image preloader util
 import preloader from 'spectacle/lib/utils/preloader';
@@ -46,32 +40,40 @@ require('normalize.css');
 require('spectacle/lib/themes/default/index.css');
 
 const images = {
-  mls: require('../assets/mls-allwhite-logo.png'),
-  react: require('../assets/react.svg'),
+  meteor: require('../assets/meteor.svg'),
+  apollo: require('../assets/apollo.svg'),
+  benchmarks: require('../assets/benchmarks.png'),
+  mls: require('../assets/mls.png'),
+  twitterLite: require('../assets/twitter-lite.png'),
   reactNative: require('../assets/reactNative.svg'),
-  heart: require('../assets/heart.svg'),
-  twitter: require('../assets/twitter.svg'),
   twitterWhite: require('../assets/twitter-white.svg'),
   medium: require('../assets/medium.svg'),
   github: require('../assets/github.svg'),
-  kenTweet: require('../assets/ken-tweet.png'),
-  jamesTweet: require('../assets/james-tweet.png'),
   starrySky: require('../assets/starry-sky.jpeg'),
   reactWebChart: require('../assets/react-web.png'),
   reactNativeChart: require('../assets/react-native.png'),
   webVrSketch: require('../assets/webvr-sketch.png'),
   allPlatforms: require('../assets/all-platforms.png'),
   nsync: require('../assets/nsync.jpg'),
-  tired: require('../assets/tired.jpg'),
+  peggy: require('../assets/peggy.jpg'),
   hermione: require('../assets/hermione.jpg'),
   platformFiles: require('../assets/platform-extensions.png'),
+  nativeDirectory: require('../assets/native-directory.png'),
+  universalComponents: require('../assets/universal-components.png'),
+  universalApplication: require('../assets/universal-application.png'),
   platformPrimitives: require('../assets/platform-primitives.png'),
   nativeModules: require('../assets/native-modules.png'),
   storybook: require('../assets/storybook-screenshot.png'),
   webToNative: require('../assets/web-to-native.png'),
-  haul: require('../assets/haul.png'),
   waitWhat: require('../assets/wait-what.jpg'),
   apple: require('../assets/apple-1998.png'),
+  tweet1: require('../assets/tweet1.png'),
+  tweet2: require('../assets/tweet2.png'),
+  tweet3: require('../assets/tweet3.png'),
+  sketch: require('../assets/sketch.png'),
+  safari: require('../assets/safari.png'),
+  svgs: require('../assets/svgs.png'),
+  storyshots: require('../assets/storyshots.png'),
 };
 
 preloader(images);
@@ -88,6 +90,12 @@ const theme = createTheme(colors, {
   primary: { name: 'Poppins', googleFont: true, styles: ['400', '600'] },
   secondary: 'Helvetica',
 });
+
+const fontSize = {
+  large: '3.2em',
+  medium: '2.2em',
+  small: '1.8em',
+};
 
 @Radium
 export default class Presentation extends Component {
@@ -106,46 +114,60 @@ export default class Presentation extends Component {
           bgDarken={0.4}
           notes={notes.intro1}
         >
-          <Text margin="10px 0 0" textColor="tertiary" textSize="3em">
+          <Text
+            margin="10px 0 0"
+            textColor="tertiary"
+            textSize={fontSize.large}
+          >
             write once,
           </Text>
-          <Text margin="10px 0 0" textColor="tertiary" textSize="3em">
+          <Text
+            margin="10px 0 0"
+            textColor="tertiary"
+            textSize={fontSize.large}
+          >
             render anywhere!
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.intro2}>
-          <Text bold textColor="secondary" textSize="2em">
-            Hi! 🙋 I'm Peggy.
+        <Slide
+          transition={['fade']}
+          bgImage={images.peggy}
+          notes={notes.intro2}
+        >
+          <Text
+            bold
+            textColor="tertiary"
+            textSize={fontSize.medium}
+            style={{ textShadow: '2px 2px 2px #010207' }}
+          >
+            Shalom! 🙋 I'm Peggy.
           </Text>
           <Link href="https://twitter.com/peggyrayzis">
             <Text
-              style={{ margin: '20px' }}
-              textColor="tertiary"
-              textSize="2em"
+              margin="20px"
+              textColor="secondary"
+              textSize={fontSize.medium}
+              style={{ textShadow: '2px 2px 2px #010207' }}
             >
               @peggyrayzis
             </Text>
           </Link>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.mls}>
+        <Slide transition={['fade']} bgColor="primary" notes={notes.apollo}>
           <div
             style={{
               display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <Image height={'9.5em'} width={'10em'} src={images.mls} />
-            <Image
-              height={'8em'}
-              width={'8em'}
-              style={{ margin: '0 20px 0 20px' }}
-              src={images.heart}
-            />
-            <Image height={'9.5em'} width={'10em'} src={images.react} />
+            <Image width="100%" src={images.meteor} margin="0 0 20px 0" />
+            <Image width="100%" src={images.apollo} margin="20px 0 0 0" />
           </div>
         </Slide>
         <Slide transition={['fade']} bgColor="primary" notes={notes.reactWeb}>
-          <Image height="555px" width="285px" src={images.reactWebChart} />
+          <Image height="600px" src={images.reactWebChart} />
         </Slide>
         <Slide
           transition={['fade']}
@@ -163,17 +185,16 @@ export default class Presentation extends Component {
           >
             <Image
               height="540px"
-              width="630px"
-              style={{ margin: '0 auto', marginBottom: '-10px' }}
+              margin="0 auto"
               src={images.reactNativeChart}
             />
             <Appear>
-              <Image height="90px" width="595px" src={images.webVrSketch} />
+              <Image height="90px" src={images.webVrSketch} />
             </Appear>
           </div>
         </Slide>
         <QuoteSlide
-          textSize="2em"
+          textSize={fontSize.medium}
           quote="92% of developers who used React Native would use it again."
           link="http://stateofjs.com/2016/mobile/"
           author="stateofjs.com, 2016"
@@ -230,7 +251,7 @@ export default class Presentation extends Component {
           notes={notes.primitives1}
         >
           <Image
-            style={{ marginLeft: '3px' }}
+            margin="0px 0px 0px 3px"
             height="650px"
             src={images.allPlatforms}
           />
@@ -272,25 +293,12 @@ export default class Presentation extends Component {
         >
           <Image src={images.apple} height="650px" />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.community1}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Image width="600px" src={images.kenTweet} />
-            <Image width="600px" src={images.jamesTweet} />
-          </div>
-        </Slide>
         <QuoteSlide
           quote="I hope that there are plans for further unifying React Native and React for mobile web. At any given time there’s a handful of people (either at Facebook, or other companies/startups) exploring ways to bring RN style mobile app development to the web, and React Native seems like a great place to start."
           link="https://www.reactiflux.com/transcripts/jordan-walke/"
           author="Jordan Walke, creator of React"
           colors={colors}
-          notes={notes.community2}
+          notes={notes.community1}
         />
         <Slide
           transition={['fade']}
@@ -298,351 +306,230 @@ export default class Presentation extends Component {
           notes={notes.crossPlatform}
         >
           <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            Cross-platform component libraries work around the web's limitations to
+            How do we bring
             {' '}
-            <span style={{ color: colors.secondary }}>
-              improve the developer experience
-            </span>
-            .
+            <span style={{ color: colors.secondary }}>React Native</span>
+            {' '}
+            style application development to the
+            {' '}
+            <span style={{ color: colors.secondary }}>web</span>
+            ?
           </Text>
         </Slide>
         <Slide
           transition={['fade']}
           bgColor="primary"
-          notes={notes.crossPlatformBenefits}
+          notes={notes.crossPlatform2}
+          margin="0px"
         >
-          <List>
-            <ListItem textColor="secondary">
-              Reduce duplicative code
-            </ListItem>
-            {[
-              'Eliminate context switching',
-              'Standardize libraries across platforms',
-              'Improve team velocity',
-            ].map(benefit => (
-              <Appear key={benefit}>
-                <ListItem textColor="secondary">
-                  {benefit}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
+          <Image width="500px" src={images.universalComponents} />
+          <Image width="500px" src={images.universalApplication} />
         </Slide>
-        <Slide transition={['fade']} notes={notes.universal1}>
-          <Comparison
-            top="Universal Application"
-            bottom="Universal Components"
-          />
-        </Slide>
-        <Slide transition={['fade']} notes={notes.universal2}>
-          <Comparison
-            top="Write once, run anywhere"
-            bottom="Write once, render anywhere"
-          />
-        </Slide>
-        <Slide transition={['fade']} notes={notes.universal3}>
-          <Comparison top="One repository" bottom="Multiple repositories" />
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.libraries1}>
-          <Text textColor="secondary" lineHeight={1.6} textSize="2.6em">
-            react-native-web
-          </Text>
-          <Appear>
-            <Text textColor="tertiary" lineHeight={1.6} textSize="2.6em">
-              react-primitives
-            </Text>
-          </Appear>
-          <Appear>
-            <Text textColor="quartenary" lineHeight={1.6} textSize="2.6em">
-              ReactXP
-            </Text>
-          </Appear>
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.libraries2}>
-          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            There isn't a best solution, only the best solution for your requirements & team's constraints.
-          </Text>
-        </Slide>
-        <Slide transition={['fade']}>
-          <Link href="https://github.com/necolas/react-native-web">
-            <Text
-              textColor="secondary"
-              textSize="2em"
-              lineHeight={1.2}
-              style={{ paddingBottom: '10px' }}
-            >
-              react-native-web
-            </Text>
-          </Link>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'Impressive feature parity with React Native',
-              'Performant StyleSheet implementation',
-              'You can use React Native modules on the web',
-            ].map(feature => (
-              <Appear key={feature}>
-                <ListItem textSize="1.1em" textColor="secondary">
-                  <span style={{ paddingRight: '24px' }}>✅</span>{feature}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']}>
-          <CodePane
-            style={{ width: '600px', minWidth: 0 }}
-            lang="jsx"
-            source={ReactNativeWeb}
-          />
-        </Slide>
-        <Slide transition={['fade']}>
-          <Text
-            textColor="secondary"
-            textSize="2em"
-            lineHeight={1.2}
-            style={{ margin: '0 auto', paddingBottom: '10px' }}
-          >
-            react-native-web
-          </Text>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'Not Fiber compatible yet',
-              'Requires custom Webpack config',
-              'No Typescript or Flow support',
-            ].map((caveat, i) => (
-              <Appear key={caveat}>
-                <ListItem textSize="1.1em" textColor="secondary">
-                  <span style={{ paddingRight: '24px' }}>⚠️</span>{caveat}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']}>
-          <Link href="https://github.com/lelandrichardson/react-primitives">
-            <Text
-              textColor="tertiary"
-              textSize="2em"
-              lineHeight={1.2}
-              style={{ paddingBottom: '10px' }}
-            >
-              react-primitives
-            </Text>
-          </Link>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'Focuses on just the essentials',
-              'Injects primitives depending on platform',
-              'Works well with react-sketchapp',
-            ].map(feature => (
-              <Appear key={feature}>
-                <ListItem textSize="1.1em" textColor="tertiary">
-                  <span style={{ paddingRight: '24px' }}>✅</span>{feature}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']}>
-          <CodePane
-            style={{ width: '600px', minWidth: 0 }}
-            lang="jsx"
-            source={ReactPrimitives}
-          />
-        </Slide>
-        <Slide transition={['fade']}>
-          <Text
-            textColor="tertiary"
-            textSize="2em"
-            lineHeight={1.2}
-            style={{ margin: '0 auto', paddingBottom: '10px' }}
-          >
-            react-primitives
-          </Text>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'Supported APIs are limited',
-              'Difficult to run React Native modules on web',
-              'No Typescript or Flow support',
-            ].map((caveat, i) => (
-              <Appear key={caveat}>
-                <ListItem textSize="1.1em" textColor="tertiary">
-                  <span style={{ paddingRight: '24px' }}>⚠️</span>{caveat}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']}>
-          <Link href="https://microsoft.github.io/reactxp/">
-            <Text
-              textColor="quartenary"
-              textSize="2em"
-              lineHeight={1.2}
-              style={{ margin: '0 auto', paddingBottom: '10px' }}
-            >
-              ReactXP
-            </Text>
-          </Link>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'Compiles to web with zero setup',
-              'Write once, run anywhere',
-              'Excellent Typescript support',
-            ].map(feature => (
-              <Appear key={feature}>
-                <ListItem textSize="1.1em" textColor="quartenary">
-                  <span style={{ paddingRight: '24px' }}>✅</span>{feature}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']}>
-          <CodePane
-            style={{ width: '600px', minWidth: 0 }}
-            lang="jsx"
-            source={ReactXP}
-          />
-        </Slide>
-        <Slide transition={['fade']}>
-          <Text
-            textColor="quartenary"
-            textSize="2em"
-            lineHeight={1.2}
-            style={{ margin: '0 auto', paddingBottom: '10px' }}
-          >
-            ReactXP
-          </Text>
-          <List style={{ listStyleType: 'none' }}>
-            {[
-              'APIs & components differ from React Native',
-              'Only supports web, iOS, Android, & Windows',
-              'StyleSheet is 2x slower than react-native-web',
-            ].map((caveat, i) => (
-              <Appear key={caveat}>
-                <ListItem textSize="1.1em" textColor="quartenary">
-                  <span style={{ paddingRight: '24px' }}>⚠️</span>{caveat}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary">
-          <Text textColor="tertiary" lineHeight={1.2} textSize="1.9em">
-            At MLS, we develop
-            <span style={{ color: colors.secondary }}>
-              {' '}universal components{' '}
-            </span>
-            backed by <span style={{ color: colors.secondary }}>
-              react-native-web
-            </span>
-            .
-          </Text>
-        </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="primary"
-          notes={notes.constraint1}
-        >
-          <Text textColor="tertiary" lineHeight={1.2} textSize="1.9em">
-            Our biggest constraint is <span style={{ color: colors.secondary }}>
-              time
-            </span>
-            .
-          </Text>
-        </Slide>
-        <Slide transition={['fade']} notes={notes.constraint2}>
-          <Text
-            lineHeight={1.2}
-            textSize="1.1em"
-            style={{ paddingBottom: '20px' }}
-            textColor="tertiary"
-          >
-            Build tooling for universal apps isn't 100% ready yet
-          </Text>
-          <Image height="550px" src={images.haul} />
-          <Link href="http://blog.nparashuram.com/2017/04/react-native-packager-vs-haul.html">
-            <Text italic lineHeight={1.2} textSize="0.5em" textColor="tertiary">
-              source: @nparashuram
-            </Text>
-          </Link>
-        </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="primary"
-          notes={notes.constraint3}
-        >
-          <Text textColor="tertiary" lineHeight={1.2} textSize="1.9em">
-            Our ability to
-            <span style={{ color: colors.secondary }}>
-              {' '}run anywhere{' '}
-            </span>
-            is limited by our third-party dependencies.
-          </Text>
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.tools}>
+        <Slide margin="0px" transition={['fade']} notes={notes.universal1}>
           <div
             style={{
               display: 'flex',
-              height: '100%',
-              flexDirection: 'column',
               justifyContent: 'space-between',
+              alignItems: 'center',
             }}
           >
-            <Text lineHeight={1.2} textSize="2em" textColor="secondary">
-              Tools of the trade 🛠
-            </Text>
-            {['Webpack', 'Storybook', 'Lerna'].map(tool => (
-              <Text
-                lineHeight={1.2}
-                textSize="2em"
-                textColor="tertiary"
-                key={tool}
-              >
-                {tool}
-              </Text>
-            ))}
+            <Image width="500px" src={images.universalComponents} />
+            <List style={{ width: '400px' }}>
+              {[
+                'Platform agnostic components made with React Native primitives',
+                'Published via shared NPM package',
+                '"Write once, render anywhere"',
+              ].map(item => (
+                <ListItem key={item} textSize="1.2em">{item}</ListItem>
+              ))}
+            </List>
           </div>
         </Slide>
-        <Slide transition={['fade']} notes={notes.webpack1}>
-          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
-            Aliasing is awesome
+        <Slide margin="0px" transition={['fade']} notes={notes.universal2}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <List style={{ width: '400px', textAlign: 'right' }}>
+              {[
+                'Business logic is shared between platforms',
+                'Comprised of universal components',
+                '"Write once, run anywhere"',
+              ].map(item => (
+                <ListItem key={item} textSize="1.2em">{item}</ListItem>
+              ))}
+            </List>
+            <Image width="500px" src={images.universalApplication} />
+          </div>
+        </Slide>
+        <Slide transition={['fade']} bgColor="primary" notes={notes.libraries1}>
+          <div
+            style={{
+              height: '650px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Link href="https://github.com/necolas/react-native-web">
+              <Text textColor="secondary" lineHeight={1.6} textSize="2.6em">
+                react-native-web
+              </Text>
+            </Link>
+            <Link href="https://github.com/lelandrichardson/react-primitives">
+              <Text textColor="tertiary" lineHeight={1.6} textSize="2.6em">
+                react-primitives
+              </Text>
+            </Link>
+            <Link href="https://microsoft.github.io/reactxp/">
+              <Text textColor="quartenary" lineHeight={1.6} textSize="2.6em">
+                ReactXP
+              </Text>
+            </Link>
+            <Link href="https://reactnyc-universal-components.surge.sh/">
+              <Text textColor="secondary" lineHeight={1.6} textSize="1.3em">
+                *for a comparison of all 3, check out the first iteration of this talk
+              </Text>
+            </Link>
+          </div>
+        </Slide>
+        <Slide transition={['fade']} bgColor="primary" notes={notes.libraries2}>
+          <div
+            style={{
+              height: '650px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Link href="https://github.com/necolas/react-native-web">
+              <Text textColor="secondary" lineHeight={1.6} textSize="2.6em">
+                react-native-web
+              </Text>
+            </Link>
+            <Text textColor="tertiary" lineHeight={1.6} textSize="1.7em">
+              <span style={{ color: colors.secondary }}>APIs: 21/43</span>
+              {' '}
+              (9 missing are iOS/Android specific)
+            </Text>
+            <Text textColor="tertiary" lineHeight={1.6} textSize="1.7em">
+              <span style={{ color: colors.secondary }}>Components: 22/36</span>
+              {' '}
+              (13 missing are iOS/Android specific)
+            </Text>
+            <Text textColor="secondary" lineHeight={1.6} textSize="1.7em">
+              Platform parity: ~75%
+            </Text>
+          </div>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.productionReady1}
+        >
+          <Text
+            textColor="tertiary"
+            lineHeight={1.2}
+            textSize={fontSize.medium}
+          >
+            Is react-native-web
+            {' '}
+            <span style={{ color: colors.secondary }}>production ready</span>
+            ?
+          </Text>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.productionReady2}
+          margin="0px"
+        >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              lineHeight={1.2}
+              textSize="1.5em"
+              padding="0 0 25px 0"
+              textColor="secondary"
+            >
+              Twitter Lite
+            </Text>
+            <Image src={images.twitterLite} height="700px" />
+          </div>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.productionReady2}
+          margin="0px"
+        >
+          <Text
+            lineHeight={1.2}
+            textSize="1.5em"
+            padding="0 0 25px 0"
+            textColor="secondary"
+          >
+            Major League Soccer Schedule & Scores
+          </Text>
+          <Image src={images.mls} width="1000px" />
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.accessibility}
+          margin="0px"
+        >
+          <Text
+            lineHeight={1.2}
+            textSize="1.5em"
+            padding="0 0 25px 0"
+            textColor="secondary"
+          >
+            Accessibility APIs: Add ARIA roles 🙌
           </Text>
           <CodePane
-            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            textSize=".8em"
+            style={{ minWidth: 0 }}
             lang="jsx"
-            source={Webpack.alias}
+            source={ReactNativeWeb.accessibility}
           />
         </Slide>
-        <Slide transition={['fade']} notes={notes.webpack2}>
-          <Link href="https://github.com/tleunen/babel-plugin-module-resolver">
-            <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
-              You can also alias with Babel
+        <Slide transition={['fade']} bgColor="primary">
+          <Text
+            lineHeight={1.2}
+            textSize="1.5em"
+            padding="0 0 25px 0"
+            textColor="secondary"
+          >
+            StyleSheet performance: Faster than most CSS-in-JS libraries 🚀
+          </Text>
+          <Image height="500px" src={images.benchmarks} />
+          <Link href="https://www.youtube.com/watch?v=tFFn39lLO-U">
+            <Text
+              lineHeight={1.2}
+              textSize="1.2em"
+              padding="0 0 25px 0"
+              textColor="tertiary"
+            >
+              *to learn more, check out @necolas' talk!
             </Text>
           </Link>
-          <CodePane
-            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
-            lang="jsx"
-            source={Webpack.babel}
-          />
         </Slide>
-        <Slide transition={['fade']} notes={notes.webpack3}>
-          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
-            Don't forget to update your .flowconfig
-          </Text>
-          <CodePane
-            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
-            lang="jsx"
-            source={Webpack.flow}
-          />
-          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
-            ...or your Jest config!
-          </Text>
-          <CodePane
-            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
-            lang="jsx"
-            source={Webpack.jest}
+        <Slide transition={['fade']} bgColor="primary" notes={notes.codeReuse}>
+          <Comparison
+            top="More code reuse"
+            bottom="Less duplication"
+            comparison="&"
           />
         </Slide>
         <Slide
@@ -654,15 +541,25 @@ export default class Presentation extends Component {
           <Text
             style={{ textShadow: '2px 2px 2px #010207' }}
             lineHeight={1.2}
-            textSize="1.7em"
+            textSize={fontSize.medium}
             textColor="secondary"
           >
-            With some Webpack wizardry, you can use React Native modules on the web!
+            With some Webpack wizardry, you can use React Native libraries on the web!
           </Text>
         </Slide>
         <Slide transition={['fade']} notes={notes.rnModules1}>
           <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
-            Compile with Babel first
+            Alias react-native-web
+          </Text>
+          <CodePane
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            lang="jsx"
+            source={Webpack.alias}
+          />
+        </Slide>
+        <Slide transition={['fade']} notes={notes.rnModules1}>
+          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
+            Compile library to ES5 with Babel
           </Text>
           <CodePane
             style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
@@ -680,96 +577,66 @@ export default class Presentation extends Component {
             source={Webpack.moduleAliasing}
           />
         </Slide>
-        <Slide transition={['fade']}>
-          <Text lineHeight={1.2} textSize="1.2em" textColor="quartenary">
-            React Native modules rendered on the web 😮
-          </Text>
-          <Image
-            width="100%"
-            style={{ marginTop: '50px' }}
-            src={images.nativeModules}
-          />
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary">
-          <div
-            style={{
-              display: 'flex',
-              height: '100%',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.webCompatible}
+        >
+          <Text
+            textColor="tertiary"
+            lineHeight={1.2}
+            textSize={fontSize.medium}
           >
-            <Text lineHeight={1.7} textSize="1.8em" textColor="secondary">
-              Write once, render anywhere ✅
-            </Text>
-            {[
-              'react-native-vector-icons',
-              'react-native-calendars',
-              'victory-native',
-            ].map(module => (
-              <Text
-                lineHeight={1.2}
-                textSize="1.8em"
-                textColor="tertiary"
-                key={module}
-              >
-                {module}
-              </Text>
-            ))}
-          </div>
+            How do I know if a React Native library is
+            {' '}
+            <span style={{ color: colors.secondary }}>
+              web compatible
+            </span>
+            ?
+          </Text>
         </Slide>
         <Slide
           transition={['fade']}
           bgColor="primary"
-          notes={notes.featureParity}
+          notes={notes.webCompatible2}
         >
-          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            react-native-web's
-            {' '}
-            <span style={{ color: colors.secondary }}>
-              feature parity
-            </span>
-            {' '}
-            with React Native is what makes this possible.
-          </Text>
-        </Slide>
-        <Slide transition={['fade']} notes={notes.storybook1}>
-          <Text lineHeight={1.2} textSize="1.3em" textColor="tertiary">
-            Storybook + Universal Components = ❤️
-          </Text>
-          <Image
-            width="80%"
-            style={{ marginTop: '50px' }}
-            src={images.storybook}
-          />
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.storybook2}>
-          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            Developing our components in isolation helps us
-            {' '}
-            <span style={{ color: colors.secondary }}>
-              iterate faster
-            </span>
-            .
-          </Text>
+          <Link href="https://native.directory/">
+            <Text lineHeight={1.2} textSize="1.2em" textColor="quartenary">
+              native.directory: Your one stop shop
+            </Text>
+          </Link>
+          <Image width="100%" src={images.nativeDirectory} />
         </Slide>
         <Slide transition={['fade']} bgColor="primary">
-          <List>
-            <ListItem textColor="secondary">
-              Automatic Jest snapshot testing
-            </ListItem>
-            {[
-              'Streamlines design QA workflow',
-              'Addons for documentation',
-              'View multiple platforms with Sizzy',
-            ].map(benefit => (
-              <Appear key={benefit}>
-                <ListItem textColor="secondary">
-                  {benefit}
-                </ListItem>
-              </Appear>
-            ))}
-          </List>
+          <Image src={images.tweet2} width="800px" />
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.renderAgnostic}
+        >
+          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
+            Keep your components lightweight
+          </Text>
+          <CodePane
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            lang="jsx"
+            source={ReactNativeWeb.renderAgnostic}
+          />
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.renderAgnostic}
+        >
+          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
+            Your universal components are your application's primitives!
+          </Text>
+          <CodePane
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            lang="jsx"
+            source={ReactNativeWeb.renderAgnostic2}
+          />
         </Slide>
         <Slide
           transition={['fade']}
@@ -787,7 +654,7 @@ export default class Presentation extends Component {
           <CodePane
             style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
             lang="jsx"
-            source={Storybook.platformModule}
+            source={RenderAgnostic.platformModule}
           />
         </Slide>
         <Slide transition={['fade']} notes={notes.platformExt3}>
@@ -821,55 +688,153 @@ export default class Presentation extends Component {
                 padding: '0',
               }}
               lang="jsx"
-              source={Storybook.platformExtensions}
+              source={RenderAgnostic.platformExtensions}
             />
           </div>
         </Slide>
+        <Slide transition={['fade']} bgColor="primary" notes={notes.storybook2}>
+          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
+            How do I
+            {' '}
+            <span style={{ color: colors.secondary }}>
+              test
+            </span>
+            {' '}universal components?
+          </Text>
+        </Slide>
+        <Slide transition={['fade']} notes={notes.storybook1}>
+          <Text lineHeight={1.2} textSize="1.3em" textColor="tertiary">
+            Storybook: Develop in isolation
+          </Text>
+          <Image
+            width="80%"
+            style={{ marginTop: '50px' }}
+            src={images.storybook}
+          />
+        </Slide>
+        <Slide transition={['fade']} notes={notes.storybook1}>
+          <Text lineHeight={1.2} textSize="1.2em" textColor="tertiary">
+            Storyshots: Automatically convert your stories to Jest snapshots ✨
+          </Text>
+          <Image
+            width="80%"
+            style={{ marginTop: '50px' }}
+            src={images.storyshots}
+          />
+        </Slide>
         <Slide transition={['fade']} bgColor="primary">
-          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            From Storybook, we publish our universal components as a
-            {' '}
-            <span style={{ color: colors.secondary }}>
-              NPM package
-            </span>
-            {' '} to share across platforms.
+          <Image src={images.tweet1} width="800px" />
+        </Slide>
+        <Slide transition={['fade']} margin="0px" bgColor="primary">
+          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
+            Be mindful of responsive design
+          </Text>
+          <CodePane
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            lang="jsx"
+            source={ReactNativeWeb.styling}
+          />
+        </Slide>
+        <Slide transition={['fade']} margin="0px" bgColor="primary">
+          <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
+            Pass props into a StyleSheet factory
+          </Text>
+          <CodePane
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            lang="jsx"
+            source={ReactNativeWeb.styling2}
+          />
+        </Slide>
+        <Slide transition={['fade']} bgColor="primary">
+          <Image src={images.tweet3} width="800px" />
+        </Slide>
+        <Slide transition={['fade']} bgColor="primary">
+          <Link href="http://dev.apollodata.com/">
+            <Image src={images.apollo} width="800px" />
+          </Link>
+          <Text
+            lineHeight={1.2}
+            textColor="tertiary"
+            textSize={fontSize.medium}
+          >
+            A flexible & powerful GraphQL client
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.lerna1}>
-          <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            If you have multiple shared packages,
+        <Slide transition={['fade']} bgColor="primary">
+          <Link href="http://dev.apollodata.com/">
+            <Image src={images.apollo} width="800px" />
+          </Link>
+          <Text
+            lineHeight={1.2}
+            textColor="tertiary"
+            textSize={fontSize.medium}
+          >
+            <span style={{ color: colors.secondary }}>Universal data</span>
             {' '}
-            <span style={{ color: colors.secondary }}>
-              Lerna
-            </span>
-            {' '} makes managing them more efficient.
+            for your universal components 😍
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.lerna2}>
-          <List>
-            <ListItem textColor="secondary">
-              Symlinks common dependencies
-            </ListItem>
+        <Slide bgColor="primary" transition={['fade']}>
+          <Text lineHeight={1.2} textSize="1.4em" textColor="secondary">
+            Compatible with any client, including React Native & Sketch
+          </Text>
+          <Image width="80%" src={images.sketch} />
+        </Slide>
+        <Slide bgColor="primary" margin="0px" transition={['fade']}>
+          <Text lineHeight={1.2} textSize="1.4em" textColor="secondary">
+            Write your query once, run it anywhere!
+          </Text>
+          <CodePane
+            style={{
+              minWidth: 0,
+              maxWidth: 900,
+              fontSize: '0.6em',
+              margin: '0',
+              padding: '0',
+            }}
+            lang="jsx"
+            source={ReactNativeWeb.apollo}
+          />
+        </Slide>
+        <Slide transition={['fade']} margin="0px" bgColor="primary">
+          <Text textSize="2em" lineHeight={1.6} textColor="secondary">
+            Challenges yet to be solved:
+          </Text>
+          <Text textSize="2em" lineHeight={1.6} textColor="tertiary">
+            Webkit Flexbox performance
+          </Text>
+          <Image width="80%" src={images.safari} />
+        </Slide>
+        <Slide transition={['fade']} margin="0px" bgColor="primary">
+          <Text textSize="2em" lineHeight={1.6} textColor="tertiary">
+            Cross-platform SVGs
+          </Text>
+          <Image width="60%" src={images.svgs} />
+          <Link href="https://github.com/godaddy/svgs">
+            <Text textSize="1.2em" lineHeight={1.6} textColor="secondary">
+              *Check out svgs, a compat layer between browser SVG elements & react-native-svg
+            </Text>
+          </Link>
+        </Slide>
+        <Slide transition={['fade']} margin="0px" bgColor="primary">
+          <Text textSize="2em" lineHeight={1.6} textColor="tertiary">
+            VR
+          </Text>
+          <List textColor="secondary">
             {[
-              'Publish packages with one command',
-              'Great for a universal app monorepo',
-            ].map(benefit => (
-              <Appear key={benefit}>
-                <ListItem textColor="secondary">
-                  {benefit}
-                </ListItem>
-              </Appear>
-            ))}
+              'Units are in meters, not pixels',
+              'Wide variety of input events to account for',
+              'Cross-platform components are limited to View, Image, & Text',
+            ].map(item => <ListItem key={item}>{item}</ListItem>)}
           </List>
         </Slide>
-        <Slide
-          transition={['fade']}
-          bgImage={images.tired}
-          notes={notes.tired}
-        />
         <Slide transition={['fade']} bgColor="primary" notes={notes.takeaway}>
           <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
-            Open your mind to new platforms and possibilities.
+            Open your mind to
+            {' '}
+            <span style={{ color: colors.secondary }}>new</span>
+            {' '}
+            platforms and possibilities.
           </Text>
         </Slide>
         <Slide
@@ -892,25 +857,13 @@ export default class Presentation extends Component {
           >
 
             <Link href="https://github.com/peggyrayzis">
-              <Image
-                style={{ margin: '30px' }}
-                src={images.github}
-                width="100px"
-              />
+              <Image margin="30px" src={images.github} width="100px" />
             </Link>
             <Link href="https://twitter.com/peggyrayzis">
-              <Image
-                style={{ margin: '30px' }}
-                src={images.twitterWhite}
-                width="100px"
-              />
+              <Image margin="30px" src={images.twitterWhite} width="100px" />
             </Link>
             <Link href="https://medium.com/@peggyrayzis">
-              <Image
-                style={{ margin: '30px' }}
-                src={images.medium}
-                width="100px"
-              />
+              <Image margin="30px" src={images.medium} width="100px" />
             </Link>
           </div>
         </Slide>
