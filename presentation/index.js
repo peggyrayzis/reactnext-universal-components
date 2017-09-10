@@ -79,7 +79,7 @@ const images = {
 preloader(images);
 
 const colors = {
-  primary: '#1B1D23',
+  primary: '#191c20',
   secondary: '#F3F4F4',
   tertiary: '#96DBE4',
   quartenary: '#93DAAB',
