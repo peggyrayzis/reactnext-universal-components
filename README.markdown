@@ -15,6 +15,7 @@ If you have any questions about the presentation or universal components, please
 ## Learn More 💡
 - [React Native for Web & Beyond, Nicolas Gallagher](https://www.youtube.com/watch?v=tFFn39lLO-U)
 - [React as a Platform, Leland Richardson](https://www.youtube.com/watch?v=JaRtmgaNZos)
+- [Why we need an app browser, Ken Wheeler](https://www.youtube.com/watch?v=WEQx3wz8QeY)
 
 ## Universal Application Starter Packs
 - [Create XP App](https://github.com/react-native-training/create-xp-app)

@@ -268,7 +268,8 @@ const notes = {
     apollo is a graphQL client that manages data fetching and updating your UI for you.
   `,
   apollo2: `
-  you can think of apollo as a universal data solution for your universal components. it's used in production by a number of large companies, ranging from ticketmaster to airbnb
+  you can think of apollo as a universal data solution for your universal components. it's used in production by a number of large companies, ranging from ticketmaster to airbnb.
+  it's also easy to integrate into your app incrementally so you don't have to refactor your whole application at once
   `,
   apollo3: `
   the reason why it is a universal data solution is because it supports any client, including react native and even sketch, without any additional configuration. i think this sketch example is really cool because designers can fetch and design with real data.
