@@ -153,7 +153,11 @@ export default class Presentation extends Component {
             </Text>
           </Link>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.apollo}>
+        <Slide
+          transition={['fade']}
+          bgColor="primary"
+          notes={notes.apolloIntro}
+        >
           <div
             style={{
               display: 'flex',

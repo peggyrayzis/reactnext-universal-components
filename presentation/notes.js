@@ -11,7 +11,7 @@ const notes = {
     <br />
     As you can see, I've had an awesome time in Israel so far! I even made some new friends on the tour.
   `,
-  apollo: `
+  apolloIntro: `
     I work at Meteor Development Group on the Apollo team building open source GraphQL tools. Previously, I was working at Major League Soccer as an engineer on the UI team.
     My talk actually isn't about GraphQL today at all, but I think Apollo client complements a universal components architecture very nicely.
     I'll explain more about that later in my talk.
@@ -80,7 +80,6 @@ const notes = {
     The odd one out here is the web -- the web’s primitives are tied to the DOM!
     We’re building components with divs & h1 tags instead of Views & Text.
     Styling & animation are not implemented in a uniform way.
-    We have to constantly build our own implementations for primitives like a listview that are essential to most modern applications.
   </p>
   `,
   primitives3: `
@@ -162,7 +161,7 @@ const notes = {
   `,
   productionReady3: `
   we also used it in production at major league soccer for our realtime match experience
-  everything here is built with RNW and we're even rendering some RN libraries on the web
+  everything here is built with universal components
   `,
   accessibility: `
   one of the things that might have concerned you is that react native web renders to divs and spans, which is a huge concern for accessibility reasons because there is no way to preserve semantic markup for screenreaders. there are built in accessibility APIs to make sure you can apply the correct ARIA role to your DOM elements
@@ -170,7 +169,6 @@ const notes = {
   perf: `
   react native web is also performant. RNW's StyleSheet implementation is on par or faster than most popular CSS in JS libraries today
   it extracts your styles into CSS, applies a class name for each unique declaration, and memoizes them at runtime to improve performance
-  if you're curious to learn more, i highly recommend nicolas gallagher's talk from react rally where he does an excellent deep dive on his stylesheet implementation
   `,
   codeReuse: `
   Adopting this architecture also increases your team's velocity. Instead of developing a feature once * the number of platforms you're supporting,
@@ -200,7 +198,7 @@ const notes = {
   the one stop shop for determining web compatibility is native directory. recently, i partnered with the awesome folks at expo to add web compatibility features to native.directory, their curated list of RN libraries
   all you need to do is check the filter to find what you're looking for!
   shoutout to jim lee, who was able to execute this feature super quickly before my talk :)
-  in the upcoming weeks, i'm going to perform an audit and work w/ maintainers to add more web compatible libraries to the list
+  in the upcoming weeks, i'm going to perform an audit to add more web compatible libraries to the list
   but i need your help! if you're using react native libraries on the web that aren't listed, PLEASE send a pull request to add it.
   `,
   tweet: `
@@ -210,7 +208,7 @@ const notes = {
   `,
   renderAgnostic: `
   a lot of the best practices with react in general apply to universal components.
-    With universal components, you want to keep them as small and focused as possible
+    you want to keep them as small and focused as possible
     i like to do this with a top level wrapper component that passes its data down to any amount of child components
     we're going to be using a simple moviecard example for this talk that passes down a movie prop to all of its children
   `,
