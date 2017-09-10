@@ -319,11 +319,13 @@ export default class Presentation extends Component {
         <Slide
           transition={['fade']}
           bgColor="primary"
-          notes={notes.crossPlatform2}
+          notes={notes.universal}
           margin="0px"
         >
-          <Image width="500px" src={images.universalComponents} />
-          <Image width="500px" src={images.universalApplication} />
+          <div style={{ width: '100%' }}>
+            <Image width="50%" src={images.universalComponents} />
+            <Image width="50%" src={images.universalApplication} />
+          </div>
         </Slide>
         <Slide margin="0px" transition={['fade']} notes={notes.universal1}>
           <div
@@ -470,7 +472,7 @@ export default class Presentation extends Component {
         <Slide
           transition={['fade']}
           bgColor="primary"
-          notes={notes.productionReady2}
+          notes={notes.productionReady3}
           margin="0px"
         >
           <Text
@@ -504,7 +506,7 @@ export default class Presentation extends Component {
             source={ReactNativeWeb.accessibility}
           />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.perf}>
           <Text
             lineHeight={1.2}
             textSize="1.5em"
@@ -547,7 +549,7 @@ export default class Presentation extends Component {
             With some Webpack wizardry, you can use React Native libraries on the web!
           </Text>
         </Slide>
-        <Slide transition={['fade']} notes={notes.rnModules1}>
+        <Slide transition={['fade']} notes={notes.rnModules}>
           <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
             Alias react-native-web
           </Text>
@@ -607,7 +609,7 @@ export default class Presentation extends Component {
           </Link>
           <Image width="100%" src={images.nativeDirectory} />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.tweet}>
           <Image src={images.tweet2} width="800px" />
         </Slide>
         <Slide
@@ -627,7 +629,7 @@ export default class Presentation extends Component {
         <Slide
           transition={['fade']}
           bgColor="primary"
-          notes={notes.renderAgnostic}
+          notes={notes.renderAgnostic2}
         >
           <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
             Your universal components are your application's primitives!
@@ -692,7 +694,7 @@ export default class Presentation extends Component {
             />
           </div>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" notes={notes.storybook2}>
+        <Slide transition={['fade']} bgColor="primary" notes={notes.storybook1}>
           <Text textColor="tertiary" lineHeight={1.2} textSize="2em">
             How do I
             {' '}
@@ -702,7 +704,7 @@ export default class Presentation extends Component {
             {' '}universal components?
           </Text>
         </Slide>
-        <Slide transition={['fade']} notes={notes.storybook1}>
+        <Slide transition={['fade']} notes={notes.storybook2}>
           <Text lineHeight={1.2} textSize="1.3em" textColor="tertiary">
             Storybook: Develop in isolation
           </Text>
@@ -712,7 +714,7 @@ export default class Presentation extends Component {
             src={images.storybook}
           />
         </Slide>
-        <Slide transition={['fade']} notes={notes.storybook1}>
+        <Slide transition={['fade']} notes={notes.storybook3}>
           <Text lineHeight={1.2} textSize="1.2em" textColor="tertiary">
             Storyshots: Automatically convert your stories to Jest snapshots ✨
           </Text>
@@ -722,20 +724,30 @@ export default class Presentation extends Component {
             src={images.storyshots}
           />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.styling}>
           <Image src={images.tweet1} width="800px" />
         </Slide>
-        <Slide transition={['fade']} margin="0px" bgColor="primary">
+        <Slide
+          transition={['fade']}
+          margin="0px"
+          bgColor="primary"
+          notes={notes.styling2}
+        >
           <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
             Be mindful of responsive design
           </Text>
           <CodePane
-            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.7em' }}
+            style={{ minWidth: 0, maxWidth: 900, fontSize: '0.65em' }}
             lang="jsx"
             source={ReactNativeWeb.styling}
           />
         </Slide>
-        <Slide transition={['fade']} margin="0px" bgColor="primary">
+        <Slide
+          transition={['fade']}
+          margin="0px"
+          bgColor="primary"
+          notes={notes.styling3}
+        >
           <Text lineHeight={1.2} textSize="1.5em" textColor="secondary">
             Pass props into a StyleSheet factory
           </Text>
@@ -745,10 +757,10 @@ export default class Presentation extends Component {
             source={ReactNativeWeb.styling2}
           />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.apollo}>
           <Image src={images.tweet3} width="800px" />
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.apollo1}>
           <Link href="http://dev.apollodata.com/">
             <Image src={images.apollo} width="800px" />
           </Link>
@@ -760,7 +772,7 @@ export default class Presentation extends Component {
             A flexible & powerful GraphQL client
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary">
+        <Slide transition={['fade']} bgColor="primary" notes={notes.apollo2}>
           <Link href="http://dev.apollodata.com/">
             <Image src={images.apollo} width="800px" />
           </Link>
@@ -774,13 +786,18 @@ export default class Presentation extends Component {
             for your universal components 😍
           </Text>
         </Slide>
-        <Slide bgColor="primary" transition={['fade']}>
+        <Slide bgColor="primary" transition={['fade']} notes={notes.apollo3}>
           <Text lineHeight={1.2} textSize="1.4em" textColor="secondary">
             Compatible with any client, including React Native & Sketch
           </Text>
           <Image width="80%" src={images.sketch} />
         </Slide>
-        <Slide bgColor="primary" margin="0px" transition={['fade']}>
+        <Slide
+          bgColor="primary"
+          margin="0px"
+          transition={['fade']}
+          notes={notes.apollo4}
+        >
           <Text lineHeight={1.2} textSize="1.4em" textColor="secondary">
             Write your query once, run it anywhere!
           </Text>
@@ -796,7 +813,12 @@ export default class Presentation extends Component {
             source={ReactNativeWeb.apollo}
           />
         </Slide>
-        <Slide transition={['fade']} margin="0px" bgColor="primary">
+        <Slide
+          transition={['fade']}
+          margin="0px"
+          bgColor="primary"
+          notes={notes.challenges1}
+        >
           <Text textSize="2em" lineHeight={1.6} textColor="secondary">
             Challenges yet to be solved:
           </Text>
@@ -805,7 +827,12 @@ export default class Presentation extends Component {
           </Text>
           <Image width="80%" src={images.safari} />
         </Slide>
-        <Slide transition={['fade']} margin="0px" bgColor="primary">
+        <Slide
+          transition={['fade']}
+          margin="0px"
+          bgColor="primary"
+          notes={notes.challenges2}
+        >
           <Text textSize="2em" lineHeight={1.6} textColor="tertiary">
             Cross-platform SVGs
           </Text>
@@ -816,7 +843,12 @@ export default class Presentation extends Component {
             </Text>
           </Link>
         </Slide>
-        <Slide transition={['fade']} margin="0px" bgColor="primary">
+        <Slide
+          transition={['fade']}
+          margin="0px"
+          bgColor="primary"
+          notes={notes.challenges3}
+        >
           <Text textSize="2em" lineHeight={1.6} textColor="tertiary">
             VR
           </Text>

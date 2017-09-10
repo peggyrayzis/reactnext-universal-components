@@ -1,19 +1,15 @@
 const notes = {
   intro1: `
-    Today we’re going to talk about something really exciting that’s generating a lot of buzz in the community.
-    Over the next 30 minutes, I’m going to show you the power of cross-platform component libraries.
-    <br />
-    <br />
-    You’re going to learn how to write a component once & render it anywhere -
+    Hi everyone! Today we’re going to talk about something really exciting that’s generating a lot of buzz in the community.
+    Over the next 25 minutes, you’re going to learn how to write a component once & render it anywhere -
     i’m talking web, native, VR, sketch, & more -- without changing any lines of code.
-    Does that sound cool?
   `,
   intro2: `
     Before we get started, I wanted to introduce myself.
-    My name is Peggy Rayzis. You can find me on the internet at my handle there.
+    Shalom! My name is Peggy Rayzis. You can find me on Twitter, Github, and Medium at my handle there.
     <br />
     <br />
-    You can also find me in the open source community working on nteract & react-native-create-bridge
+    As you can see, I've had an awesome time in Israel so far! I even made some new friends on the tour.
   `,
   apollo: `
     I work at Meteor Development Group on the Apollo team building open source GraphQL tools. Previously, I was working at Major League Soccer as an engineer on the UI team.
@@ -48,20 +44,21 @@ const notes = {
     I can't think of the last time that 92% of developers agreed upon anything!
   `,
   reactNative3: `
+  <p style="font-size:22px;padding-left:40px;">
     There are a lot of reasons why developers are continuing to bet on React Native.
     <br />
     <br />
     You have an intuitive way to handle sophisticated multi touch gestures with PanResponder,
     <br />
     You have StyleSheet, a built in CSS in JS solution that allows you to colocate your styles with your React components
-    and dynamically change styling when props change/
     <br />
     It's easy to create performant, declarative animations to enhance your UI with the Animated API
     <br />
     You also have Yoga, Facebook's cross-platform layout engine that uses flexbox by default for positioning your UI.
+    </p>
   `,
   reactNativeWeb: `
-    All of this was awesome! Not too long after React Native was officially released,
+    All of this was really exciting! Not too long after React Native was officially released,
     Nicolas Gallagher at Twitter released react-native-web to bring these APIs & the building blocks of RN over to web development
   `,
   waitWhat: `
@@ -83,11 +80,11 @@ const notes = {
     The odd one out here is the web -- the web’s primitives are tied to the DOM!
     We’re building components with divs & h1 tags instead of Views & Text.
     Styling & animation are not implemented in a uniform way.
-    Advanced touch event support requires rendering into a canvas.
+    We have to constantly build our own implementations for primitives like a listview that are essential to most modern applications.
   </p>
   `,
   primitives3: `
-    DOM primitives came out in 1998. To put it in perspective...
+    DOM primitives were standardized in 1998. To put it in perspective...
   `,
   primitives4: `
     That's the same year NSYNC released their debut album! DOM primitives are almost 20 years old!
@@ -95,7 +92,6 @@ const notes = {
   `,
   primitives5: `
     Our websites don't look like this anymore!! We need a new set of primitives that better reflect modern application development for the mobile web.
-
   `,
   community1: `
     <br />
@@ -106,31 +102,35 @@ const notes = {
   crossPlatform: `
   So how do we accomplish this goal and bring the joys of React Native development to the web?
   I think this is a pretty difficult problem to solve and won't fully materialize without advancements from browser vendors.
-  `,
-  crossPlatform2: `
-  Who knows, maybe someday we'll get a React Native app browser. Ken Wheeler built an excellent proof of concept for one in this video,
+  Who knows, maybe someday we'll get a React Native app browser. Ken Wheeler built an excellent proof of concept for one, and
   I highly encourage you to check out his talk if this subject interests you.
     Until that happens, we have to play the hand we're dealt
-    <br />
   `,
-  universal1: `
+  universal: `
+  <p style="font-size:20px;padding-left:40px;">
     There is a solution that you can start building today -- that's universal components.
     <br />
     <br />
     First, I want to explain what they are and also introduce the concept of a universal application
     universal components are built to render anywhere. They are platform agnostic components compatible with any renderer that are built with React Native primitives & APIs
     With universal components, you separate the business logic by platform, but compose your features with universal, shared components.
+    </p>
     `,
+  universal1: `
+  To share these components, you would publish them in an NPM package and consume them in each separate application.
+  You can think of building universal components as writing once and rendering anywhere.
+  This is what we're going to cover in detail today.
+  `,
   universal2: `
-    You can think of developing a universal application as writing it once, and running it anywhere. You will need some kind of intermediate layer between your UI & the platform to determine the renderer
+    in contrast, you can think of developing a universal application as writing it once, and running it anywhere. You will need some kind of intermediate layer between your UI & the platform to determine the renderer
     In a universal application, you share the business logic across platforms.
     Universal applications are built with both universal & platform specific components, so you can think of universal components as more of an incremental approach
     <br />
     <br />
-    This is a subtle but important difference. Universal components can't run anywhere without some initial configuration.
+    We're not going to cover universal applications today, but if you're interested, check out create-react-native-web-app & create-react-xp app by Nader Dabit. I'll post the link to his projects in my Github repo for the talk.
   `,
   libraries1: `
-    Three libraries have emerged to cover these needs. all of them are excellent
+    Three libraries have emerged to cover these needs. all of them are excellent.
     <br />
     <br />
     RNW - first cross-platform component library developed by Nicolas Gallagher at Twitter. It's been battle tested with Twitter Lite, their new progressive web app.
@@ -140,16 +140,20 @@ const notes = {
     ReactXP - Developed by Microsoft, newest of the three. Used by the Skype team in production.
     <br />
     <br />
-    If you'd like to see a comparison of these libraries, explaining how they work and some of their tradeoffs, you should check out the first iteration of this talk.
+    If you'd like to see a comparison of these libraries, explaining how they work and some of their tradeoffs, you should check out the first version of this talk. all of my slides are clickable, so you can follow the link below.
   `,
   libraries2: `
-    today, we're going to focus on react native web. it has the highest platform parity of all the libraries
-    that means RNW covers 80% of the components exported from React Native
-    it works almost as a compat layer on top of the DOM because it allows you to write react native primitives that render to DOM elements
+    today, we're going to focus on react native web in order to build our universal components. it has the highest platform parity of all the libraries
+    what i mean by platform parity is how similar it is to react native.
+    i actually ran the numbers - react native web supports 21 out of 43 react native APIs - that's things like StyleSheet and Dimensions.
+    9 of those 43 that are unsupported are actually iOS and Android specific
+    for components, RNW supports over half.
+    so if you combine them and substract the irrelevant platform specific APIs, react native web supports around 3/4 of what's available in react native.
+    i'd like to point out that react native web works by acting as a compatibility layer on top of DOM primitives, so you can write React Native code that will ultimately render to divs and spans.
   `,
   productionReady1: `
     you're probably wondering with a healthy dose of skepticism whether universal components built with RNW are production ready
-    or if this is just another javascript fad. RNW is already being used in production by large companies today.
+    or if this is just another javascript fad. my answer to this question is a resounding YES! RNW is already being used in production by large companies today.
   `,
   productionReady2: `twitter uses RNW for their progressive web app, twitter lite.
   in order for twitter to use RNW in production, they had to solve problems like right to left layout & accessibility.
@@ -161,28 +165,24 @@ const notes = {
   everything here is built with RNW and we're even rendering some RN libraries on the web
   `,
   accessibility: `
-  RNW covers all of the needs of a modern application. there are built in accessibility APIs to make sure you can apply the correct ARIA role to your DOM elements
+  one of the things that might have concerned you is that react native web renders to divs and spans, which is a huge concern for accessibility reasons because there is no way to preserve semantic markup for screenreaders. there are built in accessibility APIs to make sure you can apply the correct ARIA role to your DOM elements
   `,
   perf: `
-  it's performant too. RNW's StyleSheet implementation is on par or faster than most popular CSS in JS libraries today
-  it extracts your styles into css modules and memoizes them to improve performance
+  react native web is also performant. RNW's StyleSheet implementation is on par or faster than most popular CSS in JS libraries today
+  it extracts your styles into CSS, applies a class name for each unique declaration, and memoizes them at runtime to improve performance
+  if you're curious to learn more, i highly recommend nicolas gallagher's talk from react rally where he does an excellent deep dive on his stylesheet implementation
   `,
   codeReuse: `
   Adopting this architecture also increases your team's velocity. Instead of developing a feature once * the number of platforms you're supporting,
-  you'll only have to write a universal component once.
-  You'll also be able to standardize your third party libraries across platforms
-  `,
-  rnModules: `
-  for example, think of a calendar library. without universal components, you have to use a different one for both web and native
-  this leads to learning two completely different APIs for the exact same feature
-  <br />
-  <br />
-  what if i told you that you'd only have to pick one?
+  you'll only have to write a universal component once, dramatically increasing your code reuse.
+  You'll also be able to standardize your third party libraries across platforms - so instead of having a calendar library for web and a separate one for native with another API you have to learn, you can just use one, resulting in less duplication of work
   `,
   webpack4: `
     just by configuring a couple things in your build process, you can use RN libraries on the web!
-    The reason why all of this works is react-native-web's almost complete feature parity with React Native.
-    It even has shims for APIs like NativeModules and polyfills for setNativeProps to make this possible.
+    The reason why all of this is possible is react-native-web's almost complete feature parity with React Native. let's dive into some code!
+  `,
+  rnModules: `
+    first, you will want to alias react-native-web to react-native in your project. you can achieve this with either webpack or babel-plugin-module-resolver
   `,
   rnModules1: `
     since React Native modules are in ES6, you're going to have to compile them with Babel in your Webpack build.
@@ -197,18 +197,27 @@ const notes = {
     you're probably asking yourself how do I know which libraries are web compatible? surely not all of them can be
   `,
   webCompatible2: `
-  recently, i partnered with the awesome folks at expo to add web compatibility features to native.directory, their curated list of RN libraries
+  the one stop shop for determining web compatibility is native directory. recently, i partnered with the awesome folks at expo to add web compatibility features to native.directory, their curated list of RN libraries
   all you need to do is check the filter to find what you're looking for!
-  shoutout to XX, who was able to execute this feature super quickly before my talk :)
+  shoutout to jim lee, who was able to execute this feature super quickly before my talk :)
   in the upcoming weeks, i'm going to perform an audit and work w/ maintainers to add more web compatible libraries to the list
+  but i need your help! if you're using react native libraries on the web that aren't listed, PLEASE send a pull request to add it.
   `,
-  webpack2: `
-    If you're dealing with something like react vr where the internals of the packager aren't as easily accessible, you can alias with babel
-    Here, we're telling babel to resolve react-native imports to react-vr so we can render our shared components
+  tweet: `
+  alright, so switching gears, i know this architecture is very new, so i wanted to answer some of the questions the community has about universal components.
+  recently i posed the question on twitter to see what people were curious about.
+  so let's start off by briefly discussing how to write render agnostic components
   `,
   renderAgnostic: `
+  a lot of the best practices with react in general apply to universal components.
     With universal components, you want to keep them as small and focused as possible
-    Think of them as your "primitives" for features in your application that you can compose based on the platform
+    i like to do this with a top level wrapper component that passes its data down to any amount of child components
+    we're going to be using a simple moviecard example for this talk that passes down a movie prop to all of its children
+  `,
+  renderAgnostic2: `
+  Think of your universal components as your "primitives" for features in your application that you can compose based on the platform.
+  here we're rendering a poster, a title, and a plot inside a card but these could all be standalone components used in other parts of your application.
+  think of reusability as your developing
   `,
   platformExt1: `
     it's really difficult to make all of your components universal. sometimes you're going to need an escape hatch
@@ -219,29 +228,79 @@ const notes = {
   `,
   platformExt3: `
     for bigger, more substantial differences, you can use platform extensions.
-    remember when i said you would need to configure this in your webpack build?
+    you will need to configure this in your webpack build.
     here's where this comes in handy.
     you can prefix your file extension with your platform. webpack and the RN packager will know where to resolve to depending on the platform
-    this is great for things like linking which varies significantly between platforms
+    this is great for things like linking whhere the implementation varies significantly between platforms
   `,
   storybook1: `
-    another tool i'd like to touch on is react storybook.
+  how do we test our universal components?
+    a helpful tool is react storybook.
     storybook is an interactive development & testing environment for your react components.
-    it removes the platform out of the equation, so you can focus on writing your pure components quickly
+    it removes the platform out of the equation, so you can focus on writing your components quickly
   `,
   storybook2: `
     By developing our components in isolation and keeping them focused, we can iterate faster.
-    As I develop in storybook, I like to think I'm building a set of MLS primitives that I can compose into features on each platform
+    i like to use the web version of storybook to ensure that my universal components work on the web
   `,
-  tired: `
-    ok that was a lot of information to throw at you at once. i know its monday and youre prob as exhausted as this puppy
+  storybook3: `
+  another cool feature is that you can automatically convert your stories to snapshots in Jest
+  `,
+  styling: `
+    ok, so we're developing our components in storybook.
+     what about styling your universal components?
+     personally, i stick with stylesheet, but you can use libraries like glamorous native too if you're familiar with a styled components like API. it's really up to you, but i would advise to keep the performance benchmarks in mind and run them for yourself.
+  `,
+  styling2: `
+    one of the problems you'll have to tackle right away is the variation of screen sizes.
+    luckily, if you're already following responsive design practices, this shouldn't be too bad.
+    if you're designing a component for desktop, you can easily port those styles over to Apple TV
+    on the flip side, styles for the mobile web can be applied to react native.
+    to determine the media size, on web, you can use a library like react-media for media queries and pass down a top level media prop either through context or a higher order component
+    on native, you can use dimensions and onLayout to determine whether the phone is in portrait or landscape
+  `,
+  styling3: `
+    then you can pass props like media and orientation into a function that returns the output from stylesheet.create
+  `,
+  apollo: `
+  alright so we can style our components, but what about fetching data?
+  `,
+  apollo1: `
+    i think this is a perfect use case for apollo! and this is not just because i work there, i was a huge fan of apollo for universal components even when i was at major league soccer.
+    apollo is a graphQL client that manages data fetching and updating your UI for you.
+  `,
+  apollo2: `
+  you can think of apollo as a universal data solution for your universal components. it's used in production by a number of large companies, ranging from ticketmaster to airbnb
+  `,
+  apollo3: `
+  the reason why it is a universal data solution is because it supports any client, including react native and even sketch, without any additional configuration. i think this sketch example is really cool because designers can fetch and design with real data.
+  `,
+  apollo4: `
+    the other cool thing about apollo is that your components only need to request the data that they need.
+    this aligns really nicely with the modular philosophy of universal components, since the goal is to keep them small and focused.
+    with apollo, you can write your queries once and run them on any platform.
+    you can even publish shared graphql containers to an npm package along with your universal components
+  `,
+  challenges1: `
+    even though universal components are really useful, there are some challenges since the ecosystem is so new.
+    flexbox performance is still an issue in webkit and older browsers, however there is a workaround.
+    i believe this is fixed in the newest version of webkit but it's still something to keep in mind
+  `,
+  challenges2: `
+  cross platform svgs can be difficult as well for some newer, experimental platforms like sketch.
+  luckily a solution exists for web and native. svgs by godaddy is a compat layer that allows you to use the react-native-svg API to render svg elements in the browser.
+  this is essential for using libraries like react native vector icons and victory native on the web, which rely upon svg
+  `,
+  challenges3: `
+  VR can also be tough for a number of reasons. units of measurement in VR are meters, not pixels, unless you wrap your 2d components in a cylindricalpanel. it can also be hard to normalize user input events, since there are so many to account for -- gaze tracking, keyboard events, hand held controllers.
+  also you're limited to view, image, and text for cross-platform components so just keep that in mind.
   `,
   takeaway: `
-    but if you takeaway one thing from this presentation, even if you don't plan on executing a cross-platform strategy any time soon is this:
+    ok that was a lot of information to throw at you at once. if you takeaway one thing from this talk, even if you don't plan on executing a cross-platform strategy any time soon is this:
     be open minded to new platforms and possibilities.
     as our world becomes more connected, new platforms will emerge, possibly as a react custom renderer.
-    people may be using your modules or libraries in ways you never expected.
-    when RN first came out, did we ever think we would be using RN modules on the web? probably not, but that's what makes the react ecosystem awesome.
+    if you're a maintainer. people may be using your libraries in ways you never expected.
+    react is truly becoming a platform for application development, so try to think of the bigger picture 
   `,
   thanks: `
     thank you so much, you've been a fabulous audience. if you have any questions, please feel free to tweet at me or come find me later.
