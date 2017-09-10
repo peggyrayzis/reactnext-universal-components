@@ -1,13 +1,21 @@
-# Cross-Platform Data Visualization with React & React Native
+# Write Once, Render Anywhere (v2)
 
-Check out the slides online [here](https://react-conf-data-viz.surge.sh/#/)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle) and [Victory](https://github.com/FormidableLabs/victory).
-
-## Slides
-This repo contains all of the slides & chart components featured in my ⚡️ talk for React Conf 2017. All Victory cross-platform charts are in `charts/` and all UI components are in `presentation/`.
+# Slides
+Check out the slides [here](https://reactnext-universal-components.surge.sh/)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle).
 
 ## Questions
-If you have any questions about the charts I built or any of my Spectacle code, please feel free to open an issue or start a conversation on [Twitter](https://twitter.com/peggyrayzis).
+If you have any questions about the presentation or universal components, please feel free to open an issue or start a conversation on [Twitter](https://twitter.com/peggyrayzis).
 
-## Build Locally
+## Cross-Platform Component Libraries
+- [React Native Web](https://github.com/necolas/react-native-web)
+- [React Primitives](https://github.com/lelandrichardson/react-primitives)
+- [ReactXP](https://github.com/Microsoft/reactxp)
+- For a comparison of all three, check the slides for [v1 of my talk](http://reactnyc-universal-components.surge.sh/#/21)
 
-If you want to run the project locally, please fork & clone the repo. Install all dependencies with `npm i` (please don't run `yarn`, it doesn't install my forked copy of `spectacle-code-slide` properly) and run `npm run start` to start the webpack server.
+## Learn More 💡
+- [React Native for Web & Beyond, Nicolas Gallagher](https://www.youtube.com/watch?v=tFFn39lLO-U)
+- [React as a Platform, Leland Richardson](https://www.youtube.com/watch?v=JaRtmgaNZos)
+
+## Universal Application Starter Packs
+- [Create XP App](https://github.com/react-native-training/create-xp-app)
+- [Create RN Web App](https://github.com/react-native-training/create-rn-web-app)
