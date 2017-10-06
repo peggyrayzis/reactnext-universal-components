@@ -3,6 +3,9 @@
 # Slides
 Check out the slides [here](https://reactnext-universal-components.surge.sh/)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle).
 
+# Video
+Check out the video on [Youtube](https://www.youtube.com/watch?v=HLWM2uhv2wI) & give it a 👍 if you enjoyed it!
+
 ## Questions
 If you have any questions about the presentation or universal components, please feel free to open an issue or start a conversation on [Twitter](https://twitter.com/peggyrayzis).
 
